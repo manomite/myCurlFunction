@@ -1,0 +1,51 @@
+<?php
+//Simple CURL Scripts using OOP Formats for fetching datas from external web portals
+//Author: Manomite Technology
+//Copyrights 2017.
+//Version 1.0
+class Curl {
+                 // declare your variables
+                 
+                    private $cSession;
+                    private $url;
+                    private $result;
+                    
+          //Now we create a method for the class and pass an argument
+          
+   function fetchMe($url){
+
+ //step1 (Initialize the curl functions
+ 
+ 
+$cSession = curl_init();
+
+$getURL = base64_decode($url);
+
+//step2
+curl_setopt($cSession,CURLOPT_URL,$getURL);
+curl_setopt($cSession,CURLOPT_RETURNTRANSFER,true);
+curl_setopt($cSession,CURLOPT_HEADER, false); 
+//step3
+$result=curl_exec($cSession);
+//step4
+curl_close($cSession);
+//step5
+echo $result;
+      }
+ }
+ 
+ //Create an object to call the method
+ 
+ $method = new Curl();
+ 
+ //now lets use our application to fetch some datas
+ 
+ $url = base64_encode('https://www.manomite.net/view');
+ 
+ $method->fetchMe($url);
+ 
+ echo $method;
+ 
+ ?>
+  
+
